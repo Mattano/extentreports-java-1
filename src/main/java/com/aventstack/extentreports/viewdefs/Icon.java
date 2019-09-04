@@ -35,6 +35,8 @@ public class Icon {
                 return "low_priority";
             case "info":
                 return "info_outline";
+            case "retry":
+                return "redo";
             default:
                 return "help";
         }

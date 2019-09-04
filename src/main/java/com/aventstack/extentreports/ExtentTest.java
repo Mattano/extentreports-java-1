@@ -589,6 +589,21 @@ Log evt = createLog(status, details);
         log(Status.PASS, m);
         return this;
     }
+
+    public ExtentTest forcedPass(String details){
+        log(Status.RETRY_PASS,details);
+        return this;
+    }
+
+    public ExtentTest forcedFail(String details){
+        log(Status.RETRY_FAIL,details);
+        return this;
+    }
+
+    public ExtentTest retry(String details){
+        log(Status.RETRY,details);
+        return this;
+    }
     
     /**
      * Logs an <code>Status.FAIL</code> event with details and a media object: 

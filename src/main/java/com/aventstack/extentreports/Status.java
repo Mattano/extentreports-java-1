@@ -8,6 +8,9 @@ import java.util.List;
  * List of allowed status for {@link com.aventstack.extentreports.model.Log}
  */
 public enum Status implements Serializable {
+    RETRY_FAIL,
+    RETRY_PASS,
+    RETRY,
     PASS,
     FAIL,
     FATAL,
@@ -18,6 +21,9 @@ public enum Status implements Serializable {
     SKIP;
 
     private static List<Status> statusHierarchy = Arrays.asList(
+            Status.RETRY_FAIL,
+            Status.RETRY_PASS,
+            Status.RETRY,
             Status.FATAL,
             Status.FAIL,
             Status.ERROR,
@@ -32,6 +38,8 @@ public enum Status implements Serializable {
      * Returns the hierarchical list of status, in the below order:
      * 
      * <ul>
+     *  <li>RETRY_PASS</li>
+     *  <li>RETRY</li>
      * 	<li>FATAL</li>
      * 	<li>FAIL</li>
      * 	<li>ERROR</li>
@@ -54,6 +62,9 @@ public enum Status implements Serializable {
     
     static void resetStatusHierarchy() {
         List<Status> statusHierarchy = Arrays.asList(
+                Status.RETRY_FAIL,
+                Status.RETRY_PASS,
+                Status.RETRY,
                 Status.FATAL,
                 Status.FAIL,
                 Status.ERROR,
@@ -70,6 +81,8 @@ public enum Status implements Serializable {
     @Override
     public String toString() {
         switch (this) {
+            case RETRY_FAIL: return "fail";
+            case RETRY_PASS: return "pass";
             case PASS: return "pass";
             case FAIL: return "fail";
             case FATAL: return "fatal";
@@ -78,6 +91,7 @@ public enum Status implements Serializable {
             case INFO: return "info";
             case DEBUG: return "debug";
             case SKIP: return "skip";
+            case RETRY: return "retry";
             default: return "unknown";
         }
     }
